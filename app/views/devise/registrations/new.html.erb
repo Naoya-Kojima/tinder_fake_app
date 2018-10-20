@@ -1,29 +1,57 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="sinupPage">
+  <header class="header">
+    <div>アカウントを作成</div>
+  </header>
+  <div class='container'>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class:"mt-5" }) do |f| %>
+      <%= devise_error_messages! %>
+      <label for="file_photo" class="rounded-circle userProfileImg">
+        <div class="userProfileImg_description">画像をアップロード</div>
+        <i class="fas fa-camera fa-3x"></i>
+        <%= f.file_field :img_name, id: "file_photo" %>
+      </label>
+      <div class="userImgPreview" id="userImgPreview">
+        <img id="thumbnail" class="userImgPreview_content" accept="image/*" src="">
+        <p class="userImgPreview_text">画像をアップロード済み</p>
+      </div>
+      <div class="form-group">
+        <label>名前</label>
+        <%= f.text_field :name, class: "form-control", placeholder: "名前を入力してください" %>
+      </div>
+      <div class="form-group">
+        <label>Eメールアドレス</label>
+        <%= f.email_field :email, class: "form-control", placeholder: "emailを入力してください" ,autocomplete: "email" %>
+      </div>
+      <div class="form-group">
+        <label>パスワード</label>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %>文字以上入力してください)</em>
+        <% end %><br />
+        <%= f.password_field :password, class: "form-control", placeholder:"パスワードを入力してください", autocomplete: "off" %>
+      </div>
+      <div class="form-group">
+        <label>確認用パスワード</label>
+        <%= f.password_field :password_confirmation, class:"form-control", placeholder: "パスワードを再度入力してください", autocomplete: "off" %>
+      </div>
+      <div class="form-group">
+        <div><label for=''>性別</label></div>
+        <div class="form-check form-check-inline">
+          <%= f.radio_button :sex, "男", class: "form-check-input", id: "inlineRadio1" %>
+          <label class="form-check-label" for="inlineRadio1">男</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <%= f.radio_button :sex, "女", class: "form-check-input", id: "inlineRadio2" %>
+          <label class="form-check-label" for="inlineRadio2">女</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>自己紹介文</label>
+        <%= text_area :user, :self_introduction, maxlength: "1000", rows: "10", class:"form-control" %>
+      </div>
+      <div class="text-center">
+        <%= f.submit "はじめる", class: "btn submitBtn" %>
+        <%= render "devise/shared/links" %>
+      </div>
+    <% end %>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
