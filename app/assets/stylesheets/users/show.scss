@@ -1,0 +1,65 @@
+.usershowPage {
+  .header {
+    display: flex;
+    flex-direction: row-reverse;
+    padding-top: 10px;
+    &_logo {
+      & > a {
+        width: 40px;
+        display: block;
+        & > img {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .userInfo {
+    &_img {
+      width: 170px;
+      height: 170px;
+      margin: 0 auto;
+      border-radius: 50%;
+      overflow: hidden;
+      &>img {
+        width: 100%;
+      }
+    }
+
+    &_name {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 30px;
+    }
+
+    &_selfIntroduction {
+      margin-top: 30px;
+    }
+  }
+
+  .userAction {
+    display: flex;
+    justify-content: space-between;
+    width: 250px;
+    margin: 20vh auto 0;
+    color:#c3c7d0;
+    &_common {
+      & > a {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+        color:#c3c7d0;
+        text-decoration: none;
+        box-shadow: 0px 3px 8px #aaa, inset 0px 2px 3px #fff;
+        transition: color .5s;
+        &:hover {
+          color:#fd5068;
+        }
+      }
+    }
+  }
+}
